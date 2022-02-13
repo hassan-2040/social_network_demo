@@ -14,11 +14,17 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     _tabController = TabController(
-      length: 9,
+      length: 7,
       vsync: this,
       initialIndex: 0,
     );
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
   }
 
   @override
@@ -77,11 +83,9 @@ class _HomePageState extends State<HomePage>
                           Text('Posts'),
                           Text('Videos'),
                           Text('Groups'),
+                          Text('Pages'),
                           Text('Notifications'),
-                          Text('Another'),
-                          Text('Extra'),
-                          Text('Stuff'),
-                          Text('Zilong'),
+                          Text('Friends'),
                         ],
                       ),
                     ),
