@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:social_network/views/home_page.dart';
+import 'package:social_network/views/home/home_page.dart';
 
 void main() {
   runApp(const MyApp());
