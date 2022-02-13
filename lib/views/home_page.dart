@@ -29,6 +29,7 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
+    final _width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
@@ -71,6 +72,7 @@ class _HomePageState extends State<HomePage>
                         controller: _tabController,
                         isScrollable: true,
                         physics: const ClampingScrollPhysics(),
+                        padding: EdgeInsets.only(right: _width/3),
                         indicator: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(30),
