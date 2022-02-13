@@ -17,7 +17,7 @@ class HomeBackground extends StatelessWidget {
       child: Stack(
         children: [
           Positioned(
-            top: 50,
+            top: 100,
             left: SizeConfig.screenWidth / 4,
             child: const _RotatingWidgetColum(
               firstColor: Colors.green,
@@ -30,7 +30,7 @@ class HomeBackground extends StatelessWidget {
           ),
           Positioned(
             top: SizeConfig.screenHeight / 2,
-            right: SizeConfig.screenWidth / 4,
+            right: SizeConfig.screenWidth / 2,
             child: const _RotatingWidgetColum(
               firstColor: Colors.orange,
               secondColor: Colors.purple,
