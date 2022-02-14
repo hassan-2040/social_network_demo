@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:social_network/utilities/size_config.dart';
 
 class VideosTab extends StatelessWidget {
   const VideosTab({Key? key}) : super(key: key);
@@ -9,14 +10,84 @@ class VideosTab extends StatelessWidget {
       child: SizedBox(
         width: double.infinity,
         child: Column(
-          children: [
-            Container(
-              height: 400,
-              color: Colors.blue,
-              child: const Text('Videos'),
-            ),
-          ],
+          children: List<VideosListItem>.generate(
+            50,
+            (_) => const VideosListItem(),
+          ),
         ),
+      ),
+    );
+  }
+}
+
+class VideosListItem extends StatelessWidget {
+  const VideosListItem({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Row(
+              children: [
+                Container(
+                  width: 40,
+                  height: 40,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: NetworkImage(
+                        'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+                      ),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Page/User Name',
+                        style: TextStyle(
+                          fontSize: SizeConfig.textSizeNormal,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      SizedBox(height: SizeConfig.screenHeight * 0.01),
+                      Text(
+                        '21 May 2020',
+                        style: TextStyle(
+                          fontSize: SizeConfig.textSizeSmall,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Icon(
+                  Icons.more_horiz_outlined,
+                  color: Colors.grey,
+                ),
+              ],
+            ),
+          ),
+          const Text('Video caption will come here.'),
+          Container(
+            height: SizeConfig.screenHeight * 0.6,
+            width: double.infinity,
+            color: Colors.grey.shade900,
+            child: Icon(
+              Icons.play_circle_outline,
+              size: 60,
+              color: Colors.white,
+            ),
+          ),
+        ],
       ),
     );
   }

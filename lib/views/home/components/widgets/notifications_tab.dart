@@ -26,17 +26,20 @@ class NotificationsListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: ListTile(
-        visualDensity: VisualDensity.comfortable,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
+      child: Material(
+        borderRadius: BorderRadius.circular(8.0),
+        child: ListTile(
+          visualDensity: VisualDensity.comfortable,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          leading: const CircleAvatar(
+            child: Icon(Icons.group),
+          ),
+          tileColor: Colors.grey,
+          title: const Text('You have received a new notification'),
+          onTap: () {},
         ),
-        leading: const CircleAvatar(
-          child: Icon(Icons.group),
-        ),
-        tileColor: Colors.grey,
-        title: const Text('You have received a new notification'),
-        onTap: () {},
       ),
     );
   }

@@ -32,7 +32,7 @@ class BottomNavBar extends StatelessWidget {
                   child: const Center(
                     child: Icon(
                       Icons.menu,
-                      color: Colors.grey,
+                      color: Colors.white,
                     ),
                   ),
                 ),
@@ -41,10 +41,10 @@ class BottomNavBar extends StatelessWidget {
             Expanded(
               child: ShaderMask(
                 shaderCallback: (rect) {
-                  return const LinearGradient(
+                  return LinearGradient(
                     begin: Alignment.center,
                     end: Alignment.centerRight,
-                    colors: [Colors.black, Colors.transparent],
+                    colors: [Colors.grey.shade900, Colors.transparent],
                   ).createShader(Rect.fromLTRB(0, 0, rect.width, rect.height));
                 },
                 blendMode: BlendMode.dstIn,

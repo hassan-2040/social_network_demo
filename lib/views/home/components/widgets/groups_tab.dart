@@ -24,21 +24,52 @@ class GroupsListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Material(
-        borderRadius: BorderRadius.circular(8.0),
-        child: ListTile(
-          visualDensity: VisualDensity.comfortable,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      child: Row(
+        children: [
+          const SizedBox(width: 16),
+          Container(
+            width: 60,
+            height: 60,
+            decoration: BoxDecoration(
+              color: Colors.purple,
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              Icons.group,
+              color: Colors.grey,
+              size: 40,
+            ),
           ),
-          tileColor: Colors.blueGrey,
-          leading: const Icon(Icons.group),
-          title: const Text('Group name'),
-          subtitle: const Text(
-              'Group description will be placed here and will contain a short summary about the group.'),
-        ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'An Awesome Group Title',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  'A short description of the group',
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 16),
+          Icon(
+            Icons.chevron_right,
+            color: Colors.grey,
+          ),
+        ],
       ),
     );
   }
