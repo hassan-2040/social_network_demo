@@ -48,7 +48,7 @@ class _HomeBodyState extends State<HomeBody>
         children: [
           Positioned(
             top: 100,
-            left: SizeConfig.screenWidth / 4,
+            right: SizeConfig.screenWidth / 4,
             child: const _RotatingWidgetColum(
               firstColor: Colors.green,
               secondColor: Colors.blue,
@@ -60,7 +60,7 @@ class _HomeBodyState extends State<HomeBody>
           ),
           Positioned(
             top: SizeConfig.screenHeight / 2,
-            right: SizeConfig.screenWidth / 2,
+            left: SizeConfig.screenWidth / 6,
             child: const _RotatingWidgetColum(
               firstColor: Colors.orange,
               secondColor: Colors.purple,
@@ -72,7 +72,7 @@ class _HomeBodyState extends State<HomeBody>
           ),
           Positioned(
             bottom: 100,
-            left: SizeConfig.screenWidth / 4,
+            right: SizeConfig.screenWidth / 4,
             child: const _RotatingWidgetColum(
               firstColor: Colors.teal,
               secondColor: Colors.amber,

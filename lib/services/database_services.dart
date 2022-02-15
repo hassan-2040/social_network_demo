@@ -1,4 +1,5 @@
 import 'package:social_network/models/post.dart';
+import 'package:social_network/models/story.dart';
 import 'package:social_network/models/user.dart';
 
 final List<Post> posts = [
@@ -63,5 +64,38 @@ const List<User> users = [
     name: 'Mayweather Hurricane',
     imageUrl:
         'https://images.unsplash.com/photo-1541576980233-97577392db9a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1184&q=80',
+  ),
+];
+
+final List<Story> stories = [
+  Story(
+    id: 'storyIdA',
+    imageUrl:
+        'https://images.unsplash.com/photo-1601572420755-16a9f0677102?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
+    author: users[0],
+  ),
+  Story(
+    id: 'storyIdB',
+    imageUrl:
+        'https://images.unsplash.com/photo-1530519486016-6ebc8a343be5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
+    author: users[1],
+  ),
+  Story(
+    id: 'storyIdC',
+    imageUrl:
+        'https://images.unsplash.com/photo-1591079759943-d860fa280b9c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
+    author: users[2],
+  ),
+  Story(
+    id: 'storyIdD',
+    imageUrl:
+        'https://images.unsplash.com/photo-1511627916459-4c0c5863603c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
+    author: users[3],
+  ),
+  Story(
+    id: 'storyIdE',
+    imageUrl:
+        'https://images.unsplash.com/photo-1602169376841-fc7c79742eb9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
+    author: users[4],
   ),
 ];

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:social_network/models/story.dart';
 import 'package:social_network/models/user.dart';
 import 'package:social_network/services/database_services.dart';
 import 'package:social_network/utilities/size_config.dart';
@@ -29,14 +30,14 @@ class StoriesTab extends StatelessWidget {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             padding: EdgeInsets.only(bottom: SizeConfig.screenHeight * 0.1),
-            itemCount: users.length,
+            itemCount: stories.length,
             itemBuilder: (context, index) {
               final _alignment =
                   index % 2 == 0 ? Alignment.centerLeft : Alignment.centerRight;
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: _StoryWidget(
-                  user: users[index],
+                  story: stories[index],
                   alignment: _alignment,
                 ),
               );
@@ -49,17 +50,17 @@ class StoriesTab extends StatelessWidget {
 }
 
 class _StoryWidget extends StatelessWidget {
-  final User user;
+  final Story story;
   final Alignment alignment;
   const _StoryWidget({
-    required this.user,
+    required this.story,
     required this.alignment,
     Key? key,
   }) : super(key: key);
 
   Widget _userName() {
     final Widget _text = Text(
-      user.name,
+      story.author.name,
       style: TextStyle(
         color: Colors.grey.shade400,
       ),
@@ -112,7 +113,7 @@ class _StoryWidget extends StatelessWidget {
       child: SizedBox.fromSize(
         size: const Size.fromRadius(30),
         child: ImageLoader(
-          imageUrl: user.imageUrl,
+          imageUrl: story.author.imageUrl,
           width: 2,
           loadingColor: Colors.grey.shade600,
         ),
@@ -130,9 +131,17 @@ class _StoryWidget extends StatelessWidget {
             Container(
               height: SizeConfig.screenWidth * 0.6,
               width: SizeConfig.screenWidth * 0.6,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: Color.fromARGB(255, 241, 111, 102),
+              ),
+              child: ClipOval(
+                child: SizedBox.fromSize(
+                  size: Size.fromRadius(SizeConfig.screenWidth * 0.3),
+                  child: ImageLoader(
+                    imageUrl: story.imageUrl,
+                  ),
+                ),
               ),
             ),
             alignment == Alignment.centerLeft
