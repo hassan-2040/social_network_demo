@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:social_network/utilities/size_config.dart';
+import 'package:social_network/views/common_widgets/image_loader.dart';
 
 class FriendsTab extends StatelessWidget {
   const FriendsTab({Key? key}) : super(key: key);
@@ -28,17 +29,14 @@ class FriendsListItem extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Row(
         children: [
-          Container(
-            width: 50,
-            height: 50,
-            decoration: const BoxDecoration(
-              color: Colors.blue,
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: NetworkImage(
-                  'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
-                ),
-                fit: BoxFit.cover,
+          ClipOval(
+            child: SizedBox.fromSize(
+              size: const Size.fromRadius(30),
+              child: ImageLoader(
+                imageUrl:
+                    'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
+                width: 2,
+                loadingColor: Colors.grey.shade600,
               ),
             ),
           ),
@@ -64,7 +62,7 @@ class FriendsListItem extends StatelessWidget {
               ],
             ),
           ),
-          Icon(
+          const Icon(
             Icons.chevron_right,
             color: Colors.grey,
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:social_network/utilities/size_config.dart';
+import 'package:social_network/views/common_widgets/image_loader.dart';
 
 class VideosTab extends StatelessWidget {
   const VideosTab({Key? key}) : super(key: key);
@@ -32,16 +33,14 @@ class VideosListItem extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Row(
               children: [
-                Container(
-                  width: 40,
-                  height: 40,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      image: NetworkImage(
-                        'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-                      ),
-                      fit: BoxFit.cover,
+                ClipOval(
+                  child: SizedBox.fromSize(
+                    size: const Size.fromRadius(25),
+                    child: ImageLoader(
+                      imageUrl:
+                          'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+                      width: 2,
+                      loadingColor: Colors.grey.shade600,
                     ),
                   ),
                 ),

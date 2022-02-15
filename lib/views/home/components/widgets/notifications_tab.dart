@@ -34,7 +34,7 @@ class NotificationsListItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(8.0),
           ),
           leading: const CircleAvatar(
-            child: Icon(Icons.group),
+            child: Icon(Icons.lightbulb),
           ),
           tileColor: Colors.grey,
           title: const Text('You have received a new notification'),
