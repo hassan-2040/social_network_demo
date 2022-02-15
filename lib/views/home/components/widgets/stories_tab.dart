@@ -4,6 +4,7 @@ import 'package:social_network/models/user.dart';
 import 'package:social_network/services/database_services.dart';
 import 'package:social_network/utilities/size_config.dart';
 import 'package:social_network/views/common_widgets/image_loader.dart';
+import 'package:social_network/views/home/components/story_view_page.dart';
 
 class StoriesTab extends StatelessWidget {
   const StoriesTab({Key? key}) : super(key: key);
@@ -133,16 +134,29 @@ class _StoryWidget extends StatelessWidget {
       child: UnconstrainedBox(
         child: Stack(
           children: [
-            ClipOval(
-              child: SizedBox.fromSize(
-                size: Size.fromRadius(SizeConfig.screenWidth * 0.3),
-                child: ImageLoader(
-                  imageUrl: story.imageUrl,
-                  placeHolderSize: Size.fromRadius(SizeConfig.screenWidth * 0.8),
-                  placeholderWidget: Container(
-                    decoration: const BoxDecoration(
-                      color: Colors.grey,
-                      shape: BoxShape.circle,
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => StoryViewPage(story: story),
+                  ),
+                );
+              },
+              child: Hero(
+                tag: story.id,
+                child: ClipOval(
+                  child: SizedBox.fromSize(
+                    size: Size.fromRadius(SizeConfig.screenWidth * 0.3),
+                    child: ImageLoader(
+                      imageUrl: story.imageUrl,
+                      placeHolderSize:
+                          Size.fromRadius(SizeConfig.screenWidth * 0.8),
+                      placeholderWidget: Container(
+                        decoration: const BoxDecoration(
+                          color: Colors.grey,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
                     ),
                   ),
                 ),
