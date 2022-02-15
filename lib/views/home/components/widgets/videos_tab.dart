@@ -65,8 +65,13 @@ class VideosListItem extends StatelessWidget {
                     size: const Size.fromRadius(25),
                     child: ImageLoader(
                       imageUrl: user.imageUrl,
-                      width: 2,
-                      loadingColor: Colors.grey.shade600,
+                      placeHolderSize: const Size.fromRadius(25),
+                      placeholderWidget: Container(
+                        decoration: const BoxDecoration(
+                          color: Colors.grey,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
                     ),
                   ),
                 ),

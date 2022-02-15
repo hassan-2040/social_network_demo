@@ -1,13 +1,15 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class ImageLoader extends StatelessWidget {
   final String imageUrl;
-  final Color loadingColor;
-  final double width;
+  final Size? placeHolderSize;
+  final Widget placeholderWidget;
   const ImageLoader({
     required this.imageUrl,
-    this.loadingColor = Colors.blue,
-    this.width = 4.0,
+    required this.placeHolderSize,
+    required this.placeholderWidget,
     Key? key,
   }) : super(key: key);
 
@@ -41,15 +43,19 @@ class ImageLoader extends StatelessWidget {
                     1)) {
           return image;
         }
-        return Center(
-          child: CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(loadingColor),
-            strokeWidth: width,
-            value: loadingProgress.expectedTotalBytes != null
-                ? loadingProgress.cumulativeBytesLoaded /
-                    loadingProgress.expectedTotalBytes!
-                : null,
-          ),
+        // return Center(
+        //   child: CircularProgressIndicator(
+        //     valueColor: AlwaysStoppedAnimation<Color>(loadingColor),
+        //     strokeWidth: width,
+        //     value: loadingProgress.expectedTotalBytes != null
+        //         ? loadingProgress.cumulativeBytesLoaded /
+        //             loadingProgress.expectedTotalBytes!
+        //         : null,
+        //   ),
+        // );
+        return _LoadingWidget(
+          size: placeHolderSize,
+          placeholderWidget: placeholderWidget,
         );
       },
       errorBuilder:
@@ -62,6 +68,56 @@ class ImageLoader extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class _LoadingWidget extends StatefulWidget {
+  final Size? size;
+  final Widget placeholderWidget;
+  const _LoadingWidget({
+    required this.size,
+    required this.placeholderWidget,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  __LoadingWidgetState createState() => __LoadingWidgetState();
+}
+
+class __LoadingWidgetState extends State<_LoadingWidget> {
+  bool _visible = false;
+  late Timer timer;
+
+  @override
+  void initState() {
+    super.initState();
+    timer = Timer.periodic(const Duration(milliseconds: 500), (Timer t) {
+      _callSetState();
+    });
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
+  }
+
+  void _callSetState() {
+    setState(() {
+      _visible = !_visible;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedOpacity(
+      opacity: _visible ? 0.5 : 0.1,
+      duration: const Duration(milliseconds: 500),
+      child: SizedBox.fromSize(
+        size: widget.size,
+        child: widget.placeholderWidget,
+      ),
     );
   }
 }

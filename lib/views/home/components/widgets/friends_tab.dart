@@ -58,8 +58,13 @@ class FriendsListItem extends StatelessWidget {
               child: ImageLoader(
                 imageUrl:
                     'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
-                width: 2,
-                loadingColor: Colors.grey.shade600,
+                placeHolderSize: const Size.fromRadius(30),
+                placeholderWidget: Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.grey,
+                    shape: BoxShape.circle,
+                  ),
+                ),
               ),
             ),
           ),

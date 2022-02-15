@@ -70,8 +70,13 @@ class PostsListItem extends StatelessWidget {
                       size: const Size.fromRadius(25),
                       child: ImageLoader(
                         imageUrl: post.author.imageUrl,
-                        width: 2,
-                        loadingColor: Colors.grey.shade600,
+                        placeHolderSize: const Size.fromRadius(25),
+                        placeholderWidget: Container(
+                          decoration: const BoxDecoration(
+                            color: Colors.grey,
+                            shape: BoxShape.circle,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -164,8 +169,12 @@ class PostsListItem extends StatelessWidget {
                 color: Colors.grey.shade900,
                 child: ImageLoader(
                   imageUrl: post.imageUrl ?? '',
-                  width: 4,
-                  loadingColor: Colors.grey,
+                  placeHolderSize: Size.fromHeight(SizeConfig.screenHeight * 0.6),
+                  placeholderWidget: Container(
+                    decoration: const BoxDecoration(
+                      color: Colors.grey,
+                    ),
+                  ),
                 ),
               ),
             ),

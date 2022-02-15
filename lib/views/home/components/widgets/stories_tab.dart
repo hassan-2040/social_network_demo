@@ -114,8 +114,13 @@ class _StoryWidget extends StatelessWidget {
         size: const Size.fromRadius(30),
         child: ImageLoader(
           imageUrl: story.author.imageUrl,
-          width: 2,
-          loadingColor: Colors.grey.shade600,
+          placeHolderSize: const Size.fromRadius(30),
+          placeholderWidget: Container(
+            decoration: const BoxDecoration(
+              color: Colors.grey,
+              shape: BoxShape.circle,
+            ),
+          ),
         ),
       ),
     );
@@ -128,18 +133,17 @@ class _StoryWidget extends StatelessWidget {
       child: UnconstrainedBox(
         child: Stack(
           children: [
-            Container(
-              height: SizeConfig.screenWidth * 0.6,
-              width: SizeConfig.screenWidth * 0.6,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: Color.fromARGB(255, 241, 111, 102),
-              ),
-              child: ClipOval(
-                child: SizedBox.fromSize(
-                  size: Size.fromRadius(SizeConfig.screenWidth * 0.3),
-                  child: ImageLoader(
-                    imageUrl: story.imageUrl,
+            ClipOval(
+              child: SizedBox.fromSize(
+                size: Size.fromRadius(SizeConfig.screenWidth * 0.3),
+                child: ImageLoader(
+                  imageUrl: story.imageUrl,
+                  placeHolderSize: Size.fromRadius(SizeConfig.screenWidth * 0.8),
+                  placeholderWidget: Container(
+                    decoration: const BoxDecoration(
+                      color: Colors.grey,
+                      shape: BoxShape.circle,
+                    ),
                   ),
                 ),
               ),
