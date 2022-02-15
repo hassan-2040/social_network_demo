@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:social_network/models/story.dart';
 import 'package:social_network/services/database_services.dart';
+import 'package:social_network/utilities/route_transitions.dart';
 import 'package:social_network/utilities/size_config.dart';
 import 'package:social_network/views/common_widgets/image_loader.dart';
 
@@ -137,43 +138,22 @@ class _StoryWidget extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 Navigator.of(context).push(
-                  PageRouteBuilder(
-                    opaque: false,
-                    barrierDismissible: true,
-                    pageBuilder: (BuildContext context, _, __) {
-                      return GestureDetector(
-                        onTap: () => Navigator.of(context).pop(),
-                        child: Align(
-                          child: BackdropFilter(
-                            filter:
-                                ImageFilter.blur(sigmaX: 30.0, sigmaY: 30.0),
-                            child: Hero(
-                              tag: story.id,
-                              // tag: 's',
-                              child: Image.network(
-                                story.imageUrl,
-                                fit: BoxFit.cover,
-                              ),
+                  ScaleTransitionRoute(
+                    page: GestureDetector(
+                      onTap: () => Navigator.of(context).pop(),
+                      child: Align(
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 30.0, sigmaY: 30.0),
+                          child: Hero(
+                            tag: story.id,
+                            child: Image.network(
+                              story.imageUrl,
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                      );
-                    },
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) {
-                      return ScaleTransition(
-                        scale: Tween<double>(
-                          begin: 0.0,
-                          end: 1.0,
-                        ).animate(
-                          CurvedAnimation(
-                            parent: animation,
-                            curve: Curves.fastOutSlowIn,
-                          ),
-                        ),
-                        child: child,
-                      );
-                    },
+                      ),
+                    ),
                   ),
                 );
               },
@@ -185,7 +165,7 @@ class _StoryWidget extends StatelessWidget {
                     child: ImageLoader(
                       imageUrl: story.imageUrl,
                       placeHolderSize:
-                          Size.fromRadius(SizeConfig.screenWidth * 0.8),
+                          Size.fromRadius(SizeConfig.screenWidth * 0.3),
                       placeholderWidget: Container(
                         decoration: const BoxDecoration(
                           color: Colors.grey,

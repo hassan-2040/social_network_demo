@@ -1,5 +1,10 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:social_network/services/database_services.dart';
+import 'package:social_network/utilities/route_transitions.dart';
 import 'package:social_network/utilities/size_config.dart';
+import 'package:social_network/views/common_widgets/image_loader.dart';
 
 class BottomNavBar extends StatelessWidget {
   final TabController tabController;
@@ -27,7 +32,20 @@ class BottomNavBar extends StatelessWidget {
                   shape: BoxShape.circle,
                 ),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                      SlideRightTransitionRoute(
+                        page: Align(
+                          alignment: Alignment.centerLeft,
+                          child: BackdropFilter(
+                            filter:
+                                ImageFilter.blur(sigmaX: 30.0, sigmaY: 30.0),
+                            child: const DrawerColumn(),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                   customBorder: const CircleBorder(),
                   child: const Center(
                     child: Icon(
@@ -127,6 +145,98 @@ class BottomNavBar extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class DrawerColumn extends StatelessWidget {
+  const DrawerColumn({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Expanded(flex: 2, child: SizedBox()),
+          Padding(
+            padding: EdgeInsets.only(left: SizeConfig.screenWidth * 0.12),
+            child: ClipOval(
+              child: SizedBox.fromSize(
+                size: Size.fromRadius(SizeConfig.screenWidth * 0.2),
+                child: ImageLoader(
+                  imageUrl: currentUser.imageUrl,
+                  placeHolderSize:
+                      Size.fromRadius(SizeConfig.screenWidth * 0.2),
+                  placeholderWidget: Container(
+                    decoration: const BoxDecoration(
+                      color: Colors.grey,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const Expanded(flex: 1, child: SizedBox()),
+          const DrawerButton(buttonText: 'View Your Profile'),
+          const Expanded(flex: 2 ,child: SizedBox()),
+          const DrawerButton(buttonText: 'Help Center'),
+          const SizedBox(
+            height: 10,
+          ),
+          const DrawerButton(buttonText: 'Account Settings'),
+          const SizedBox(
+            height: 10,
+          ),
+          const DrawerButton(buttonText: 'App Settings'),
+          const SizedBox(
+            height: 10,
+          ),
+          const DrawerButton(buttonText: 'Terms & Privacy Policy'),
+          const SizedBox(
+            height: 10,
+          ),
+          const DrawerButton(buttonText: 'Sign Out'),
+          const SizedBox(
+            height: 10,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class DrawerButton extends StatelessWidget {
+  final String buttonText;
+  const DrawerButton({
+    required this.buttonText,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 8.0),
+      child: SizedBox(
+        width: SizeConfig.screenWidth * 0.6,
+        child: TextButton(
+          onPressed: () {},
+          style: TextButton.styleFrom(
+            shape: const StadiumBorder(),
+            backgroundColor: Colors.grey.shade900,
+            primary: Colors.grey,
+            padding: const EdgeInsets.all(10),
+          ),
+          child: Text(
+            buttonText,
+            style: const TextStyle(
+              color: Colors.grey,
+            ),
+          ),
         ),
       ),
     );

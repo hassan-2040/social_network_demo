@@ -67,6 +67,12 @@ const List<User> users = [
   ),
 ];
 
+const User currentUser = User(
+  name: 'Current User',
+  imageUrl:
+      'https://images.unsplash.com/photo-1490650034439-fd184c3c86a5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
+);
+
 final List<Story> stories = [
   Story(
     id: 'storyIdA',
