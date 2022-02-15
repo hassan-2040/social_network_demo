@@ -28,6 +28,10 @@ class GroupsTab extends StatelessWidget {
                     ),
                   ),
                 );
+              } else if (index == 49) {
+                return SizedBox(
+                  height: SizeConfig.screenHeight * 0.1,
+                );
               } else {
                 return const GroupsListItem();
               }

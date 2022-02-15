@@ -31,6 +31,7 @@ class VideosTab extends StatelessWidget {
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
+              padding: EdgeInsets.only(bottom: SizeConfig.screenHeight * 0.1),
               itemCount: users.length,
               itemBuilder: (context, index) {
                 return VideosListItem(user: users[index]);

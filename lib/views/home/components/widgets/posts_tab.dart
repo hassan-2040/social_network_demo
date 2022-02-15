@@ -31,6 +31,7 @@ class PostsTab extends StatelessWidget {
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
+              padding: EdgeInsets.only(bottom: SizeConfig.screenHeight * 0.1),
               itemCount: posts.length,
               itemBuilder: (context, index) {
                 final post = posts[index];
