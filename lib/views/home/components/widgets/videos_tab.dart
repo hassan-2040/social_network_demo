@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:social_network/models/user.dart';
+import 'package:social_network/services/database_services.dart';
 import 'package:social_network/utilities/size_config.dart';
 import 'package:social_network/views/common_widgets/image_loader.dart';
 
@@ -12,28 +14,29 @@ class VideosTab extends StatelessWidget {
         width: double.infinity,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: List<Widget>.generate(
-            50,
-            (index) {
-              if (index == 0) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 5.0,
-                    horizontal: 10.0,
-                  ),
-                  child: Text(
-                    'Recent Videos',
-                    style: TextStyle(
-                      fontSize: SizeConfig.textSizeMainHeading * 1.2,
-                      color: Colors.grey,
-                    ),
-                  ),
-                );
-              } else {
-                return const VideosListItem();
-              }
-            },
-          ),
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 5.0,
+                horizontal: 10.0,
+              ),
+              child: Text(
+                'Recent Videos',
+                style: TextStyle(
+                  fontSize: SizeConfig.textSizeMainHeading * 1.2,
+                  color: Colors.grey,
+                ),
+              ),
+            ),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: users.length,
+              itemBuilder: (context, index) {
+                return VideosListItem(user: users[index]);
+              },
+            ),
+          ],
         ),
       ),
     );
@@ -41,7 +44,11 @@ class VideosTab extends StatelessWidget {
 }
 
 class VideosListItem extends StatelessWidget {
-  const VideosListItem({Key? key}) : super(key: key);
+  final User user;
+  const VideosListItem({
+    required this.user,
+    Key? key,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -56,8 +63,7 @@ class VideosListItem extends StatelessWidget {
                   child: SizedBox.fromSize(
                     size: const Size.fromRadius(25),
                     child: ImageLoader(
-                      imageUrl:
-                          'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+                      imageUrl: user.imageUrl,
                       width: 2,
                       loadingColor: Colors.grey.shade600,
                     ),
@@ -69,7 +75,7 @@ class VideosListItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Page/User Name',
+                        user.name,
                         style: TextStyle(
                           fontSize: SizeConfig.textSizeNormal,
                           fontWeight: FontWeight.bold,

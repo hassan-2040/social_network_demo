@@ -1,6 +1,7 @@
+import 'package:social_network/models/user.dart';
+
 class Post {
-  final String authorName;
-  final String authorImageUrl;
+  final User author;
   String? caption;
   String? imageUrl;
   int? likesCount;
@@ -8,8 +9,7 @@ class Post {
   String? locationTag;
 
   Post({
-    required this.authorName,
-    required this.authorImageUrl,
+    required this.author,
     this.caption,
     this.imageUrl,
     this.likesCount,
