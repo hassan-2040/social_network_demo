@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:social_network/utilities/size_config.dart';
 
 class NotificationsTab extends StatelessWidget {
   const NotificationsTab({Key? key}) : super(key: key);
@@ -9,9 +10,28 @@ class NotificationsTab extends StatelessWidget {
       child: SizedBox(
         width: double.infinity,
         child: Column(
-          children: List<NotificationsListItem>.generate(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: List<Widget>.generate(
             50,
-            (_) => const NotificationsListItem(),
+            (index) {
+              if (index == 0) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 5.0,
+                    horizontal: 10.0,
+                  ),
+                  child: Text(
+                    'Your Notifications',
+                    style: TextStyle(
+                      fontSize: SizeConfig.textSizeMainHeading * 1.2,
+                      color: Colors.grey,
+                    ),
+                  ),
+                );
+              } else {
+                return const NotificationsListItem();
+              }
+            },
           ),
         ),
       ),

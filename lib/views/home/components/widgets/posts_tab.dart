@@ -58,14 +58,32 @@ class PostsTab extends StatelessWidget {
     return SingleChildScrollView(
       child: SizedBox(
         width: double.infinity,
-        child: ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: _posts.length,
-          itemBuilder: (context, index) {
-            final post = _posts[index];
-            return PostsListItem(post: post);
-          },
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 5.0,
+                horizontal: 10.0,
+              ),
+              child: Text(
+                'Recent Posts',
+                style: TextStyle(
+                  fontSize: SizeConfig.textSizeMainHeading * 1.2,
+                  color: Colors.grey,
+                ),
+              ),
+            ),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: _posts.length,
+              itemBuilder: (context, index) {
+                final post = _posts[index];
+                return PostsListItem(post: post);
+              },
+            ),
+          ],
         ),
       ),
     );

@@ -11,9 +11,28 @@ class FriendsTab extends StatelessWidget {
       child: SizedBox(
         width: double.infinity,
         child: Column(
-          children: List<FriendsListItem>.generate(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: List<Widget>.generate(
             50,
-            (_) => const FriendsListItem(),
+            (index) {
+              if (index == 0) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 5.0,
+                    horizontal: 10.0,
+                  ),
+                  child: Text(
+                    'Your friends',
+                    style: TextStyle(
+                      fontSize: SizeConfig.textSizeMainHeading * 1.2,
+                      color: Colors.grey,
+                    ),
+                  ),
+                );
+              } else {
+                return const FriendsListItem();
+              }
+            },
           ),
         ),
       ),

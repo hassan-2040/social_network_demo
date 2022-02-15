@@ -11,9 +11,28 @@ class VideosTab extends StatelessWidget {
       child: SizedBox(
         width: double.infinity,
         child: Column(
-          children: List<VideosListItem>.generate(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: List<Widget>.generate(
             50,
-            (_) => const VideosListItem(),
+            (index) {
+              if (index == 0) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 5.0,
+                    horizontal: 10.0,
+                  ),
+                  child: Text(
+                    'Recent Videos',
+                    style: TextStyle(
+                      fontSize: SizeConfig.textSizeMainHeading * 1.2,
+                      color: Colors.grey,
+                    ),
+                  ),
+                );
+              } else {
+                return const VideosListItem();
+              }
+            },
           ),
         ),
       ),

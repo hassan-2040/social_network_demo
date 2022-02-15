@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:social_network/utilities/size_config.dart';
 
 class PagesTab extends StatelessWidget {
   const PagesTab({Key? key}) : super(key: key);
@@ -9,9 +10,28 @@ class PagesTab extends StatelessWidget {
       child: SizedBox(
         width: double.infinity,
         child: Column(
-          children: List<PagesListItem>.generate(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: List<Widget>.generate(
             50,
-            (_) => const PagesListItem(),
+            (index) {
+              if (index == 0) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 5.0,
+                    horizontal: 10.0,
+                  ),
+                  child: Text(
+                    'Pages you Liked',
+                    style: TextStyle(
+                      fontSize: SizeConfig.textSizeMainHeading * 1.2,
+                      color: Colors.grey,
+                    ),
+                  ),
+                );
+              } else {
+                return const PagesListItem();
+              }
+            },
           ),
         ),
       ),
