@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:social_network/models/user.dart';
+import 'package:social_network/services/database_services.dart';
 import 'package:social_network/utilities/size_config.dart';
 import 'package:social_network/views/common_widgets/image_loader.dart';
 
@@ -8,44 +10,48 @@ class FriendsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: SizedBox(
-        width: double.infinity,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: List<Widget>.generate(
-            50,
-            (index) {
-              if (index == 0) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 5.0,
-                    horizontal: 10.0,
-                  ),
-                  child: Text(
-                    'Your friends',
-                    style: TextStyle(
-                      fontSize: SizeConfig.textSizeMainHeading * 1.2,
-                      color: Colors.grey,
-                    ),
-                  ),
-                );
-              } else if (index == 49) {
-                return SizedBox(
-                  height: SizeConfig.screenHeight * 0.1,
-                );
-              } else {
-                return const FriendsListItem();
-              }
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 5.0,
+              horizontal: 10.0,
+            ),
+            child: Text(
+              'Your friends',
+              style: TextStyle(
+                fontSize: SizeConfig.textSizeMainHeading * 1.2,
+                color: Colors.grey,
+              ),
+            ),
+          ),
+          ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.only(bottom: SizeConfig.screenHeight * 0.1),
+            itemCount: users.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: _FriendsListItem(
+                  user: users[index],
+                ),
+              );
             },
           ),
-        ),
+        ],
       ),
     );
   }
 }
 
-class FriendsListItem extends StatelessWidget {
-  const FriendsListItem({Key? key}) : super(key: key);
+class _FriendsListItem extends StatelessWidget {
+  final User user;
+  const _FriendsListItem({
+    required this.user,
+    Key? key,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -56,8 +62,7 @@ class FriendsListItem extends StatelessWidget {
             child: SizedBox.fromSize(
               size: const Size.fromRadius(30),
               child: ImageLoader(
-                imageUrl:
-                    'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
+                imageUrl: user.imageUrl,
                 placeHolderSize: const Size.fromRadius(30),
                 placeholderWidget: Container(
                   decoration: const BoxDecoration(
@@ -72,16 +77,16 @@ class FriendsListItem extends StatelessWidget {
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
-                  'Firstname Lastname',
-                  style: TextStyle(
+                  user.name,
+                  style: const TextStyle(
                     color: Colors.grey,
                     fontSize: 15,
                   ),
                 ),
-                Text(
-                  'Friends since DATE-TIME',
+                const Text(
+                  'Friends since 25 June 2019',
                   style: TextStyle(
                     fontSize: 12,
                     color: Colors.grey,
@@ -91,7 +96,7 @@ class FriendsListItem extends StatelessWidget {
             ),
           ),
           const Icon(
-            Icons.chevron_right,
+            Icons.more_vert,
             color: Colors.grey,
           ),
         ],
