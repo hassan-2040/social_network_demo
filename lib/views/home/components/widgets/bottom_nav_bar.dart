@@ -20,8 +20,8 @@ class BottomNavBar extends StatelessWidget {
             Material(
               color: Colors.transparent,
               child: Ink(
-                width: 40,
-                height: 40,
+                width: 50,
+                height: 50,
                 decoration: BoxDecoration(
                   color: Colors.grey.shade900,
                   shape: BoxShape.circle,
@@ -37,6 +37,9 @@ class BottomNavBar extends StatelessWidget {
                   ),
                 ),
               ),
+            ),
+            const SizedBox(
+              width: 5,
             ),
             Expanded(
               child: ShaderMask(
@@ -71,16 +74,51 @@ class BottomNavBar extends StatelessWidget {
                           borderRadius: BorderRadius.circular(30),
                         ),
                         labelColor: Colors.black,
-                        labelPadding: const EdgeInsets.all(5),
+                        labelPadding: const EdgeInsets.all(10),
                         unselectedLabelColor: Colors.grey,
-                        tabs: const [
-                          Text('Stories'),
-                          Text('Posts'),
-                          Text('Videos'),
-                          Text('Groups'),
-                          Text('Pages'),
-                          Text('Notifications'),
-                          Text('Friends'),
+                        tabs: [
+                          Text(
+                            'Stories',
+                            style: TextStyle(
+                              fontSize: SizeConfig.textSizeLarge * 1.1,
+                            ),
+                          ),
+                          Text(
+                            'Posts',
+                            style: TextStyle(
+                              fontSize: SizeConfig.textSizeLarge * 1.1,
+                            ),
+                          ),
+                          Text(
+                            'Videos',
+                            style: TextStyle(
+                              fontSize: SizeConfig.textSizeLarge * 1.1,
+                            ),
+                          ),
+                          Text(
+                            'Groups',
+                            style: TextStyle(
+                              fontSize: SizeConfig.textSizeLarge * 1.1,
+                            ),
+                          ),
+                          Text(
+                            'Pages',
+                            style: TextStyle(
+                              fontSize: SizeConfig.textSizeLarge * 1.1,
+                            ),
+                          ),
+                          Text(
+                            'Notifications',
+                            style: TextStyle(
+                              fontSize: SizeConfig.textSizeLarge * 1.1,
+                            ),
+                          ),
+                          Text(
+                            'Friends',
+                            style: TextStyle(
+                              fontSize: SizeConfig.textSizeLarge * 1.1,
+                            ),
+                          ),
                         ],
                       ),
                     ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:social_network/utilities/size_config.dart';
 import 'package:social_network/views/home/components/home_body.dart';
 
@@ -10,8 +11,11 @@ class HomePage extends StatelessWidget {
     SizeConfig().init(context);
     return const Scaffold(
       backgroundColor: Colors.black,
-      body: SafeArea(
-        child: HomeBody(),
+      body: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light,
+        child: SafeArea(
+          child: HomeBody(),
+        ),
       ),
     );
   }
