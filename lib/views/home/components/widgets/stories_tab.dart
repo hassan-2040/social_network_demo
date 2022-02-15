@@ -127,6 +127,28 @@ class _StoryWidget extends StatelessWidget {
     );
   }
 
+  Route _storyRoute() {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => StoryViewPage(
+        story: story,
+      ),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        return ScaleTransition(
+          scale: Tween<double>(
+            begin: 0.0,
+            end: 1.0,
+          ).animate(
+            CurvedAnimation(
+              parent: animation,
+              curve: Curves.fastOutSlowIn,
+            ),
+          ),
+          child: child,
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -137,9 +159,7 @@ class _StoryWidget extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => StoryViewPage(story: story),
-                  ),
+                  _storyRoute(),
                 );
               },
               child: Hero(

@@ -13,18 +13,23 @@ class StoryViewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.transparent,
       body: GestureDetector(
         onTap: () => Navigator.pop(context),
-        child: Center(
-          child: Hero(
-            tag: story.id,
-            child: ImageLoader(
-              imageUrl: story.imageUrl,
-              placeHolderSize: Size.fromHeight(SizeConfig.screenHeight),
-              placeholderWidget: Container(
-                decoration: const BoxDecoration(
-                  color: Colors.grey,
+        child: Container(
+          height: SizeConfig.screenHeight,
+          width: SizeConfig.screenWidth,
+          color: Colors.transparent,
+          child: Center(
+            child: Hero(
+              tag: story.id,
+              child: ImageLoader(
+                imageUrl: story.imageUrl,
+                placeHolderSize: Size.fromHeight(SizeConfig.screenHeight),
+                placeholderWidget: Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.grey,
+                  ),
                 ),
               ),
             ),
